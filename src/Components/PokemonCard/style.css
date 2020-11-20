@@ -1,0 +1,13 @@
+.text {
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.imgCard {
+    width: 100px;
+}

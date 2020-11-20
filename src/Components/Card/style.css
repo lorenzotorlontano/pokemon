@@ -1,0 +1,16 @@
+.imgAvatar {
+    width: 50px;
+}
+
+.cardContent {
+    width: 500px;
+}
+
+.textSpan {
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    color: red;
+}
