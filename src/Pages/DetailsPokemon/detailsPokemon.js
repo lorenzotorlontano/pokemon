@@ -17,9 +17,11 @@ function DetailsPokemon() {
 
   const [turnImg, setTurnImg] = useState(null);
 
+  const srcImg = pokemonDetails && pokemonDetails.sprites.front_default;
+
   useEffect(() => {
     if (isSuccess) {
-      setTurnImg(pokemonDetails.sprites.front_default);
+      setTurnImg(srcImg);
     }
   }, [pokemonDetails]);
 
@@ -32,7 +34,11 @@ function DetailsPokemon() {
         />
       </Grid>
       <Grid item md={6} lg={6} xs={12} className="cardImg">
-        <Table setTurnImg={setTurnImg} pokemonDetails={pokemonDetails} />
+        <Table
+          srcImg={srcImg}
+          setTurnImg={setTurnImg}
+          pokemonDetails={pokemonDetails}
+        />
       </Grid>
     </Grid>
   );

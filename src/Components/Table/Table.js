@@ -10,27 +10,33 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CustomizedTables({ pokemonDetails, setTurnImg }) {
-  const classes = useStyles();
+export default function CustomizedTables({
+  pokemonDetails,
+  setTurnImg,
+  srcImg,
+}) {
+  let classes = useStyles();
 
-  const [text, setText] = useState("BACK");
+  let [text, setText] = useState("BACK");
 
-  const [isTurned, setIsTurned] = useState(false);
+  let [isTurned, setIsTurned] = useState(false);
 
-  const [isShiny, setIsShiny] = useState(false);
+  let [isShiny, setIsShiny] = useState(false);
+
+  let frontShinyImg = pokemonDetails && pokemonDetails.sprites.front_shiny;
+
+  let back_defaultImg = pokemonDetails && pokemonDetails.sprites.back_default;
+
+  let back_shinyImg = pokemonDetails && pokemonDetails.sprites.back_shiny;
 
   const handleTurn = () => {
     if (isTurned) {
       setIsTurned(false);
-      isShiny
-        ? setTurnImg(pokemonDetails && pokemonDetails.sprites.front_shiny)
-        : setTurnImg(pokemonDetails && pokemonDetails.sprites.front_default);
+      isShiny ? setTurnImg(frontShinyImg) : setTurnImg(srcImg);
       setText("BACK");
     } else {
       setIsTurned(true);
-      isShiny
-        ? setTurnImg(pokemonDetails && pokemonDetails.sprites.back_shiny)
-        : setTurnImg(pokemonDetails && pokemonDetails.sprites.back_default);
+      isShiny ? setTurnImg(back_shinyImg) : setTurnImg(back_defaultImg);
       setText("FRONT");
     }
   };
@@ -38,14 +44,10 @@ export default function CustomizedTables({ pokemonDetails, setTurnImg }) {
   const handleShiny = () => {
     if (isShiny) {
       setIsShiny(false);
-      isTurned
-        ? setTurnImg(pokemonDetails && pokemonDetails.sprites.back_default)
-        : setTurnImg(pokemonDetails && pokemonDetails.sprites.front_default);
+      isTurned ? setTurnImg(back_defaultImg) : setTurnImg(srcImg);
     } else {
       setIsShiny(true);
-      isTurned
-        ? setTurnImg(pokemonDetails && pokemonDetails.sprites.back_shiny)
-        : setTurnImg(pokemonDetails && pokemonDetails.sprites.front_shiny);
+      isTurned ? setTurnImg(back_shinyImg) : setTurnImg(frontShinyImg);
     }
   };
 
