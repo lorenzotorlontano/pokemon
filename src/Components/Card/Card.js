@@ -10,6 +10,8 @@ import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+
 import "./style.css";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,22 +43,27 @@ export default function RecipeReviewCard({ turnImg, pokemonDetails }) {
   return (
     <Card className={classes.root}>
       <CardHeader
+        className="cardHeader"
         avatar={
           <Avatar className={classes.avatar}>
             <img className="imgAvatar" src={turnImg} />
           </Avatar>
         }
-        action={<IconButton></IconButton>}
+        action={
+          <IconButton aria-label="settings">
+            <MoreVertIcon />
+          </IconButton>
+        }
         title={pokemonDetails && pokemonDetails.name}
         subheader={"N °  " + pokemonDetails && pokemonDetails?.id}
       />
       <CardMedia className={classes.media} image={turnImg} />
-      <CardContent className="cardContent"></CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+
+      <div className="containerIconButton">
+        <IconButton>
           <FavoriteIcon className="icon" />
         </IconButton>
-      </CardActions>
+      </div>
     </Card>
   );
 }

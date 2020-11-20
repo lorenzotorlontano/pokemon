@@ -14,3 +14,7 @@
 .icon {
     color: red;
 }
+
+.cardHeader {
+    width: 300px;
+}
