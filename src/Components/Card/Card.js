@@ -42,19 +42,15 @@ export default function RecipeReviewCard({ turnImg, pokemonDetails }) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
+          <Avatar className={classes.avatar}>
             <img className="imgAvatar" src={turnImg} />
           </Avatar>
         }
-        action={<IconButton aria-label="settings"></IconButton>}
+        action={<IconButton></IconButton>}
         title={pokemonDetails && pokemonDetails.name}
         subheader={"N °  " + pokemonDetails && pokemonDetails?.id}
       />
-      <CardMedia
-        className={classes.media}
-        image={turnImg}
-        title="Paella dish"
-      />
+      <CardMedia className={classes.media} image={turnImg} />
       <CardContent className="cardContent"></CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
