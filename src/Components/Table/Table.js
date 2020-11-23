@@ -35,9 +35,9 @@ export default function CustomizedTables({
   const handleShiny = () => {
     setIsShiny(!isShiny);
     if (isShiny) {
-      isTurned ? setTurnImg(backDefaultImg) : setTurnImg(srcImg);
+      setTurnImg(isTurned ? backDefaultImg : srcImg);
     } else {
-      isTurned ? setTurnImg(backShinyImg) : setTurnImg(frontShinyImg);
+      setTurnImg(isTurned ? backShinyImg : frontShinyImg);
     }
   };
 
