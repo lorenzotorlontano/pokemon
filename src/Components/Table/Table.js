@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
+import { makeStyles } from "@material-ui/core/styles";
 import MainTable from "../Table/MainTable";
 
 const useStyles = makeStyles({
@@ -15,39 +13,31 @@ export default function CustomizedTables({
   setTurnImg,
   srcImg,
 }) {
-  let classes = useStyles();
-
-  let [text, setText] = useState("BACK");
-
-  let [isTurned, setIsTurned] = useState(false);
-
-  let [isShiny, setIsShiny] = useState(false);
-
-  let frontShinyImg = pokemonDetails && pokemonDetails.sprites.front_shiny;
-
-  let back_defaultImg = pokemonDetails && pokemonDetails.sprites.back_default;
-
-  let back_shinyImg = pokemonDetails && pokemonDetails.sprites.back_shiny;
+  const classes = useStyles(),
+    [text, setText] = useState("BACK"),
+    [isTurned, setIsTurned] = useState(false),
+    [isShiny, setIsShiny] = useState(false),
+    frontShinyImg = pokemonDetails && pokemonDetails.sprites.front_shiny,
+    backDefaultImg = pokemonDetails && pokemonDetails.sprites.back_default,
+    backShinyImg = pokemonDetails && pokemonDetails.sprites.back_shiny;
 
   const handleTurn = () => {
+    setIsTurned(!isTurned);
+    setText(isTurned ? "BACK" : "FRONT");
+
     if (isTurned) {
-      setIsTurned(false);
-      isShiny ? setTurnImg(frontShinyImg) : setTurnImg(srcImg);
-      setText("BACK");
+      setTurnImg(isShiny ? frontShinyImg : srcImg);
     } else {
-      setIsTurned(true);
-      isShiny ? setTurnImg(back_shinyImg) : setTurnImg(back_defaultImg);
-      setText("FRONT");
+      setTurnImg(isShiny ? backShinyImg : backDefaultImg);
     }
   };
 
   const handleShiny = () => {
+    setIsShiny(!isShiny);
     if (isShiny) {
-      setIsShiny(false);
-      isTurned ? setTurnImg(back_defaultImg) : setTurnImg(srcImg);
+      isTurned ? setTurnImg(backDefaultImg) : setTurnImg(srcImg);
     } else {
-      setIsShiny(true);
-      isTurned ? setTurnImg(back_shinyImg) : setTurnImg(frontShinyImg);
+      isTurned ? setTurnImg(backShinyImg) : setTurnImg(frontShinyImg);
     }
   };
 
